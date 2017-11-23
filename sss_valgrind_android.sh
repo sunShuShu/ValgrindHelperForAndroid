@@ -51,9 +51,9 @@ install_valgrind() {
 
 input_parameter() {
 	if [[ ! -e .sss_last_input ]]; then
-	PACKAGE_NAME="com.example.ctest"
-	APP_MAIN_ACTIVITY="CTestActivity"
-	SYMBOLIZED_LIB_PATH="`pwd`/CTest/app/build/intermediates/cmake/debug/obj/armeabi-v7a"
+	PACKAGE_NAME="com.sunshushu.test"
+	APP_MAIN_ACTIVITY="MainActivity"
+	SYMBOLIZED_LIB_PATH="`pwd`/valgrind_test/app/build/intermediates/cmake/debug/obj/armeabi-v7a"
 	echo -e "${PACKAGE_NAME}\n${APP_MAIN_ACTIVITY}\n${SYMBOLIZED_LIB_PATH}" > .sss_last_input
 	fi
 
@@ -72,6 +72,10 @@ input_parameter() {
 			PACKAGE_NAME="$PACKAGE_NAME_INPUT"
 		else
 			echo "$PACKAGE_NAME"
+		fi
+		if [[ ${#PACKAGE_NAME} -gt 26 ]]; then
+			echo "FAIL! The length of package name can not be greater than 26."
+			exit 1
 		fi
 		ALL_PACKAGES=`adb shell pm list packages`
 		if [[ $? -ne 0 ]]; then
@@ -158,7 +162,7 @@ launch_valgrind() {
 	rm ./.temp
 	GETPROP=`adb shell getprop wrap.$PACKAGE_NAME | tr -d "\r"`
 	if [[ $LOG_WRAPPER != $GETPROP ]]; then
-		echo -e "FAIL! Can not set device prop. Ensure the device can execute \"adb shell setprop\"."
+		echo -e "FAIL! Can not set device system property. Ensure the device can execute \"adb shell setprop\"."
 		exit 1
 	fi
 
