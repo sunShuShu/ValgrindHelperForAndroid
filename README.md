@@ -15,7 +15,9 @@ A easy way to using valgrind in Android device.
 
 # 使用
 * 将Valgrind安装到安卓设备上：  
-	- 1.下载[ValgrindHelperForAndroid.zip](https://github.com/sunShuShu/ValgrindHelperForAndroid/releases)和对应你手机cpu架构的[Valgrind压缩包](https://github.com/sunShuShu/ValgrindHelperForAndroid/releases)。  
+	- 1.下载[ValgrindHelperForAndroid.zip](https://github.com/sunShuShu/ValgrindHelperForAndroid/releases)和对应你手机cpu架构的Valgrind压缩包: 
+	[ARMv7](https://github.com/sunShuShu/ValgrindForAndroid/raw/master/valgrind-arm.zip), 
+	[ARM64](https://github.com/sunShuShu/ValgrindForAndroid/raw/master/valgrind-arm64.zip).  
 	- 2.解压ValgrindHelperForAndroid.zip，把Valgrind压缩包放到ValgrindHelperForAndroid文件夹中。就像这样：  
 	![](readme_attachment.png)  
 	- 3.在终端中执行下面的命令：  
