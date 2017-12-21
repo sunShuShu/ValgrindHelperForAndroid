@@ -8,7 +8,8 @@ A easy way to using valgrind in Android device.
 * 开始之前的说明:    
 1.你的安卓设备需要root.（有兴趣完善这个脚本的朋友可以尝试一下把这条限制去掉）  
 2.目前，在下面的电脑和安卓设备中测试成功了（欢迎提交Pull request补充），其他PC和设备可能需要修改脚本。如果需要修改脚本，可以参考*原理*中的内容。  
-	- `macOS 10.13`    `华为荣耀3C(H30-T00) 4.4.2`
+	- `macOS 10.13` `华为荣耀3C(H30-T00) 4.4.2`
+	- `Ubuntu 16.04.3` `华为荣耀3C(H30-T00) 4.4.2`
 
 **\*原理和FAQ在[Wiki](https://github.com/sunShuShu/ValgrindHelperForAndroid/wiki)里。**  
 **如果你优化了这个脚本的兼容性或修改了bug，（或者有能力把README和Wiki里的内容翻译成英文😂）欢迎提交[Pull request](https://github.com/sunShuShu/ValgrindHelperForAndroid/pulls)❤️**
