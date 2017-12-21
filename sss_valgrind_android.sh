@@ -21,7 +21,7 @@ install_valgrind() {
 	fi
 	echo "DEVICE_CPU_TYPE: $DEVICE_CPU_TYPE"
 	
-	rm -r ./Inst
+	rm -rf ./Inst
 	echo "Unzip valgrind package..."
 	case $DEVICE_CPU_TYPE in
 		"ARMv7")
@@ -32,7 +32,7 @@ install_valgrind() {
 			;;
 	esac
 	if [[ $? -ne 0 ]]; then
-		rm -r ./Inst
+		rm -rf ./Inst
 		echo "FAIL! Can not unzip valgrind package."
 		exit 1
 	fi
@@ -43,7 +43,7 @@ install_valgrind() {
 		echo "You can try to move the `pwd`/Inst/data/local/Inst to /data/local manually."
 		exit 1
 	else
-		rm -r ./Inst
+		rm -rf ./Inst
 	fi
 
 	echo "DONE, install valgrind success!"
@@ -51,10 +51,10 @@ install_valgrind() {
 
 input_parameter() {
 	if [[ ! -e .sss_last_input ]]; then
-	PACKAGE_NAME="com.sunshushu.test"
-	APP_MAIN_ACTIVITY="MainActivity"
-	SYMBOLIZED_LIB_PATH="`pwd`/valgrind_test/app/build/intermediates/cmake/debug/obj/armeabi-v7a"
-	echo -e "${PACKAGE_NAME}\n${APP_MAIN_ACTIVITY}\n${SYMBOLIZED_LIB_PATH}" > .sss_last_input
+		PACKAGE_NAME="com.sunshushu.test"
+		APP_MAIN_ACTIVITY="MainActivity"
+		SYMBOLIZED_LIB_PATH="`pwd`/valgrind_test/app/build/intermediates/cmake/debug/obj/armeabi-v7a"
+		echo -e "${PACKAGE_NAME}\n${APP_MAIN_ACTIVITY}\n${SYMBOLIZED_LIB_PATH}" > .sss_last_input
 	fi
 
 	echo "Type valgrind parameter, nullable."
@@ -82,7 +82,7 @@ input_parameter() {
 			echo "Ensure adb is installed and device is pluged!"
 			continue
 		fi
-		echo "$ALL_PACKAGES" | grep -q "package:${PACKAGE_NAME}\r"
+		echo "$ALL_PACKAGES" | grep -q "package:${PACKAGE_NAME}"
 		if [[ $? -ne 0 ]]; then
 			echo "There is no specified app on the device, try again."
 			continue
@@ -130,11 +130,11 @@ exec /data/local/Inst/bin/valgrind \$VGPARAMS \$* "
 
 	adb push start_valgrind.sh /data/local/
 	if [ $? -ne 0 ]; then
-		rm ./start_valgrind.sh
+		rm -f ./start_valgrind.sh
 		echo "FAIL! Ensure adb is installed and device is pluged!"
 		exit 1
 	fi
-	rm ./start_valgrind.sh
+	rm -f ./start_valgrind.sh
 
 	adb shell chmod 777 /data/local/start_valgrind.sh
 	if [ $? -ne 0 ]; then
@@ -159,7 +159,7 @@ launch_valgrind() {
 	adb root
 	echo -e "setprop wrap.$PACKAGE_NAME \"$LOG_WRAPPER\"\n exit" > .temp
 	adb shell < .temp
-	rm ./.temp
+	rm -f ./.temp
 	GETPROP=`adb shell getprop wrap.$PACKAGE_NAME | tr -d "\r"`
 	if [[ $LOG_WRAPPER != $GETPROP ]]; then
 		echo -e "FAIL! Can not set device system property. Ensure the device can execute \"adb shell setprop\"."
@@ -189,7 +189,7 @@ wait_and_terminate_app() {
 		else
 			echo -e "setprop wrap.$PACKAGE_NAME \"\"\n exit" > .temp
 			adb shell < .temp
-			rm ./.temp
+			rm -f ./.temp
 			break
 		fi
 	done
@@ -212,10 +212,9 @@ pull_logs() {
 		fi
 	done
 
-	adb shell rm /sdcard/valgrind.*.log
+	adb shell rm -f /sdcard/valgrind.*.log
 	echo "DONE. Check the log(s) in `pwd`"
 }
-
 
 if [[ $# -eq 0 ]]; then
 	input_parameter
