@@ -24,7 +24,7 @@ A easy way to using valgrind in Android device.
 	- 3.在终端中执行下面的命令：  
 	```
 	cd <ValgrindHelperForAndroid Path>  
-	./sss_valgrind_android -i
+	./sss_valgrind_android.sh -i
 	```
 	- 4.出现下面的提示说明安装成功：  
 	```DONE, install valgrind success!```
