@@ -1,5 +1,5 @@
 # ValgrindHelperForAndroid
-A easy way to using valgrind in Android device.  
+A easy way to use valgrind on Android device.  
 
 # 简介
 现在有很多安卓应用因为性能或安全方面原因，会通过JNI调用原生代码。排查原生的C、C++代码时可以使用Valgrind。Valgrind工具包括Memcheck（用于检测C和C++中与内存相关的错误）、Cachegrind（缓存分析器）、Massif（堆分析器）和其他几种工具。Valgrind在Linux开发中应用广泛，但在安卓开发中用起来比较麻烦，官方文档和网上的资料也比较少。这就是这个工具诞生的原因。  
